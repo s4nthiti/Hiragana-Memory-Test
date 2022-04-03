@@ -24,26 +24,33 @@ class Toplevel1:
         _ana1color = '#d9d9d9' # X11 color: 'gray85'
         _ana2color = '#ececec' # Closest X11 color: 'gray92'
 
-        hiragana_list = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽぁぃぅぇぉ"
+        hiragana_list = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ"
+        katakana_list = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ"
+        romaji_list = ["a","i","u","e","o","ka","ki","ku","ke","ko","sa","shi","su","se","so","ta","chi","tsu","te","to","na","ni","nu","ne","no","ha","hi","fu","he","ho","ma","me","mu","me","mo","ya","yu","yo","ra","ri","ru","re","ro","wa","n","ga","gi","gu","ge","go","za","ji","zu","ze","zo","da","dji","dzu","de","do","ba","bi","bu","be","bo","pa","pi","pu","pe","po"]
+        randomHiragana = random.choice(hiragana_list)
+        index_str = hiragana_list.index(randomHiragana)
+        randomKatakana = katakana_list[index_str]
 
-        top.geometry("600x482+660+199")
+        top.geometry("800x600+400+200")
         top.minsize(120, 1)
         top.maxsize(1924, 1061)
         top.resizable(1,  1)
         top.title("Hiragana Randomizer")
         top.configure(background="#d9d9d9")
-
+        
         self.top = top
 
         self.Frame1 = tk.Frame(self.top)
-        self.Frame1.place(relx=0.017, rely=0.021, relheight=0.954, relwidth=0.967)
+        self.Frame1.place(relx=0.018, rely=0.022, relheight=0.953, relwidth=0.966)
         self.Frame1.configure(relief='groove')
         self.Frame1.configure(borderwidth="2")
         self.Frame1.configure(relief="groove")
         self.Frame1.configure(background="#d9d9d9")
+        self.Frame1.configure(highlightbackground="#d9d9d9")
+        self.Frame1.configure(highlightcolor="black")
 
         self.Hiragana = tk.Message(self.Frame1)
-        self.Hiragana.place(relx=0.379, rely=0.239, relheight=0.326, relwidth=0.259)
+        self.Hiragana.place(relx=0.142, rely=0.21, relheight=0.325, relwidth=0.259)
         self.Hiragana.configure(background="#ffffff")
         self.Hiragana.configure(borderwidth="10")
         self.Hiragana.configure(font="-family {Segoe UI} -size 72")
@@ -53,51 +60,48 @@ class Toplevel1:
         self.Hiragana.configure(justify='center')
         self.Hiragana.configure(padx="1")
         self.Hiragana.configure(pady="1")
-        randomHiragana = random.choice(hiragana_list)
         self.Hiragana.configure(text=randomHiragana)
         self.Hiragana.configure(width=170)
 
         self.HiraganaLabel = tk.LabelFrame(self.Frame1)
-        self.HiraganaLabel.place(relx=0.31, rely=0.043, relheight=0.174, relwidth=0.379)
+        self.HiraganaLabel.place(relx=0.207, rely=0.017, relheight=0.175, relwidth=0.599)
         self.HiraganaLabel.configure(relief='groove')
         self.HiraganaLabel.configure(font="-family {Segoe UI} -size 36")
         self.HiraganaLabel.configure(foreground="black")
         self.HiraganaLabel.configure(background="#d9d9d9")
+        self.HiraganaLabel.configure(highlightbackground="#d9d9d9")
+        self.HiraganaLabel.configure(highlightcolor="black")
 
         self.Hiragana1 = tk.Label(self.HiraganaLabel)
-        self.Hiragana1.place(relx=0.045, rely=0.125, height=61, width=194, bordermode='ignore')
+        self.Hiragana1.place(relx=0.043, rely=0.12, height=76, width=408, bordermode='ignore')
+        self.Hiragana1.configure(activebackground="#f9f9f9")
+        self.Hiragana1.configure(activeforeground="black")
         self.Hiragana1.configure(anchor='w')
         self.Hiragana1.configure(background="#d9d9d9")
         self.Hiragana1.configure(compound='center')
         self.Hiragana1.configure(disabledforeground="#a3a3a3")
         self.Hiragana1.configure(font="-family {Segoe UI} -size 30")
         self.Hiragana1.configure(foreground="#000000")
-        self.Hiragana1.configure(text='''Hiragana''')
+        self.Hiragana1.configure(highlightbackground="#d9d9d9")
+        self.Hiragana1.configure(highlightcolor="black")
+        self.Hiragana1.configure(text='''Hiragana & Katakana''')
 
         self.Answer = tk.Text(self.Frame1)
-        self.Answer.place(relx=0.052, rely=0.696, relheight=0.261, relwidth=0.431)
+        self.Answer.place(relx=0.052, rely=0.696, relheight=0.26, relwidth=0.431)
         self.Answer.configure(background="white")
-        self.Answer.configure(font="-family {Segoe UI} -size 48")
+        self.Answer.configure(font="-family {Segoe UI} -size 30")
         self.Answer.configure(foreground="black")
         self.Answer.configure(highlightbackground="#d9d9d9")
         self.Answer.configure(highlightcolor="black")
         self.Answer.configure(insertbackground="black")
         self.Answer.configure(selectbackground="blue")
         self.Answer.configure(selectforeground="white")
-        self.Answer.configure(wrap="none")
-
-        def onsubmit(e):
-            input = self.Answer.get("1.0",END)
-            input = re.sub('\s+',' ',input)
-            randomHiragana = random.choice(hiragana_list)
-            self.Hiragana.configure(text=randomHiragana)
-            return 'break'
-        self.Answer.bind("<Return>", onsubmit)
+        self.Answer.configure(wrap="word")
 
         self.Result = tk.Text(self.Frame1)
-        self.Result.place(relx=0.515, rely=0.696, relheight=0.261, relwidth=0.431)
+        self.Result.place(relx=0.517, rely=0.696, relheight=0.26, relwidth=0.431)
         self.Result.configure(background="white")
-        self.Result.configure(font="-family {Segoe UI} -size 48")
+        self.Result.configure(font="-family {Segoe UI} -size 30")
         self.Result.configure(foreground="black")
         self.Result.configure(highlightbackground="#d9d9d9")
         self.Result.configure(highlightcolor="black")
@@ -108,17 +112,21 @@ class Toplevel1:
         self.Result.configure(wrap="word")
 
         self.AnswerLabel = tk.Label(self.Frame1)
-        self.AnswerLabel.place(relx=0.052, rely=0.587, height=41, width=114)
+        self.AnswerLabel.place(relx=0.052, rely=0.587, height=51, width=152)
+        self.AnswerLabel.configure(activebackground="#f9f9f9")
+        self.AnswerLabel.configure(activeforeground="black")
         self.AnswerLabel.configure(anchor='w')
         self.AnswerLabel.configure(background="#d9d9d9")
         self.AnswerLabel.configure(compound='left')
         self.AnswerLabel.configure(disabledforeground="#a3a3a3")
         self.AnswerLabel.configure(font="-family {Segoe UI} -size 24")
         self.AnswerLabel.configure(foreground="#000000")
+        self.AnswerLabel.configure(highlightbackground="#d9d9d9")
+        self.AnswerLabel.configure(highlightcolor="black")
         self.AnswerLabel.configure(text='''Answer''')
 
         self.ResultLabel = tk.Label(self.Frame1)
-        self.ResultLabel.place(relx=0.517, rely=0.587, height=41, width=114)
+        self.ResultLabel.place(relx=0.517, rely=0.587, height=51, width=152)
         self.ResultLabel.configure(activebackground="#f9f9f9")
         self.ResultLabel.configure(activeforeground="black")
         self.ResultLabel.configure(anchor='w')
@@ -131,6 +139,77 @@ class Toplevel1:
         self.ResultLabel.configure(highlightcolor="black")
         self.ResultLabel.configure(text='''Result''')
 
+        self.Katakana = tk.Message(self.Frame1)
+        self.Katakana.place(relx=0.569, rely=0.21, relheight=0.325, relwidth=0.259)
+        self.Katakana.configure(background="#ffffff")
+        self.Katakana.configure(borderwidth="10")
+        self.Katakana.configure(font="-family {Segoe UI} -size 72")
+        self.Katakana.configure(foreground="#000000")
+        self.Katakana.configure(highlightbackground="#d9d9d9")
+        self.Katakana.configure(highlightcolor="black")
+        self.Katakana.configure(justify='center')
+        self.Katakana.configure(padx="1")
+        self.Katakana.configure(pady="1")
+        self.Katakana.configure(text=randomKatakana)
+        self.Katakana.configure(width=60)
+
+        self.HiraganaButton = tk.Button(self.Frame1)
+        self.HiraganaButton.place(relx=0.401, rely=0.21, height=30, width=30)
+        self.HiraganaButton.configure(activebackground="#ececec")
+        self.HiraganaButton.configure(activeforeground="#000000")
+        self.HiraganaButton.configure(background="#d9d9d9")
+        self.HiraganaButton.configure(compound='left')
+        self.HiraganaButton.configure(disabledforeground="#a3a3a3")
+        self.HiraganaButton.configure(font="-family {Segoe UI} -size 14 -weight bold")
+        self.HiraganaButton.configure(foreground="#ff0000")
+        self.HiraganaButton.configure(highlightbackground="#d9d9d9")
+        self.HiraganaButton.configure(highlightcolor="black")
+        self.HiraganaButton.configure(pady="0")
+        self.HiraganaButton.configure(text='''x''')
+
+        self.KatakanaButton = tk.Button(self.Frame1)
+        self.KatakanaButton.place(relx=0.828, rely=0.21, height=30, width=30)
+        self.KatakanaButton.configure(activebackground="#ececec")
+        self.KatakanaButton.configure(activeforeground="#000000")
+        self.KatakanaButton.configure(background="#d9d9d9")
+        self.KatakanaButton.configure(compound='left')
+        self.KatakanaButton.configure(disabledforeground="#a3a3a3")
+        self.KatakanaButton.configure(font="-family {Segoe UI} -size 14 -weight bold")
+        self.KatakanaButton.configure(foreground="#ff0000")
+        self.KatakanaButton.configure(highlightbackground="#d9d9d9")
+        self.KatakanaButton.configure(highlightcolor="black")
+        self.KatakanaButton.configure(pady="0")
+        self.KatakanaButton.configure(text='''x''')
+
+        self.Answer.bind("<Return>", lambda event, a=index_str, b=hiragana_list, c=katakana_list, d=romaji_list: self.keypress(a,b,c,d))
+    
+    def keypress(self, index_str, hiragana_list, katakana_list, romaji_list):
+        input = self.Answer.get("1.0",END)
+        input = re.sub('\s+',' ',input)
+        input = input.strip()
+        randomHiragana = hiragana_list[index_str]
+        randomKatakana = katakana_list[index_str]
+        index_str = hiragana_list.index(randomHiragana)
+        print(input)
+        if input and input != ' ':
+            if input == romaji_list[index_str]:
+                self.Result.configure(state='normal')
+                self.Answer.delete(0.0, "end")
+                self.Result.insert(0.0,"Correct: " + romaji_list[index_str])
+                self.Result.configure(state='disabled')
+                return 'break'
+            else:
+                self.Result.configure(state='normal')
+                self.Answer.delete(0.0, "end")
+                self.Result.insert(0.0,"Incorrect: " + romaji_list[index_str])
+                self.Result.configure(state='disabled')
+                return 'break'
+        else:
+            randomHiragana = random.choice(hiragana_list)
+            index_str = hiragana_list.index(randomHiragana)
+            randomKatakana = katakana_list[index_str]
+            romaji = romaji_list[index_str]
+            return 'break'
 
 def start_up():
     hiragana_support.main()
